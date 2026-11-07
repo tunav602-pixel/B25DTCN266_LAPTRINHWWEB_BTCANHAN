@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Cá Nhân - Nguyễn Tuấn Việt | PTIT</title>
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-header: rgba(255, 255, 255, 0.88);
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #eef2ff;
+            --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #d946ef 100%);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --work-bg: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+        }
+
+        body.dark-mode {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --bg-header: rgba(15, 23, 42, 0.88);
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --primary-light: rgba(99, 102, 241, 0.15);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        main {
+            flex: 1;
+            padding: 2.5rem 0 4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-header);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .nav-wrapper {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 800;
+        }
+
+        .logo-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-sub {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: block;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            color: var(--text-sub);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .theme-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--text-sub);
+            margin-bottom: 1.75rem;
+            max-width: 540px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: inline-block;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.45);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .avatar-frame {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            padding: 6px;
+            background: var(--accent-gradient);
+            box-shadow: var(--shadow-lg);
+            flex-shrink: 0;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-card);
+            background-color: var(--border-color);
+        }
+
+        .section-header {
+            margin-bottom: 1.75rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .info-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            word-break: break-word;
+        }
+
+        .work-box {
+            background: var(--work-bg);
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 2.25rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .work-role {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .work-org {
+            font-size: 1.05rem;
+            color: #a5b4fc;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .work-tag {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .work-desc {
+            color: #cbd5e1;
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .hobby-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hobby-badge-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .hobby-card:hover .hobby-badge-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .hobby-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hobby-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .social-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .social-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .social-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .social-fb .social-icon-box {
+            background: rgba(24, 119, 242, 0.15);
+            color: #1877f2;
+        }
+
+        .social-zalo .social-icon-box {
+            background: rgba(0, 104, 255, 0.15);
+            color: #0068ff;
+        }
+
+        .social-github .social-icon-box {
+            background: rgba(100, 116, 139, 0.15);
+            color: var(--text-main);
+        }
+
+        .social-linkedin .social-icon-box {
+            background: rgba(10, 102, 194, 0.15);
+            color: #0a66c2;
+        }
+
+        .social-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .social-sub {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-card);
+            padding: 1.75rem 0;
+            margin-top: auto;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .footer-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .avatar-frame {
+                width: 190px;
+                height: 190px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#" class="logo">
+                    <div class="logo-box">NVT</div>
+                    <div>
+                        <span class="logo-text">NVT.DEV</span>
+                        <span class="logo-sub">PTIT Student</span>
+                    </div>
+                </a>
+
+                <div class="nav-right">
+                    <ul class="nav-links">
+                        <li><a href="#info-section">Thông tin</a></li>
+                        <li><a href="#work-section">Công việc</a></li>
+                        <li><a href="#hobbies-section">Sở thích</a></li>
+                        <li><a href="#social-section">Mạng xã hội</a></li>
+                    </ul>
+
+                    <button id="theme-toggle-btn" class="theme-btn" aria-label="Đổi giao diện">
+                        <span id="theme-icon">🌙</span>
+                        <span id="theme-text">Tối</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="hero">
+            <div class="hero-text">
+                <span class="hero-badge">Sinh viên CNTT @ PTIT</span>
+                <h1 class="hero-title">
+                    Xin chào, tôi là <br>
+                    <span>Nguyễn Tuấn Việt</span>
+                </h1>
+                <p class="hero-desc">
+                    Sinh viên ngành Công nghệ Thông tin tại Học viện Công nghệ Bưu chính Viễn thông. Đam mê lập trình
+                    Web, kiểm thử phần mềm và võ thuật.
+                </p>
+                <div class="hero-btns">
+                    <a href="#info-section" class="btn btn-primary">Xem Hồ Sơ</a>
+                    <a href="#social-section" class="btn btn-secondary">Mạng Xã Hội</a>
+                </div>
+            </div>
+
+            <div class="avatar-frame">
+                <img id="avatar-img" class="avatar-img" alt="Chân dung Nguyễn Tuấn Việt"
+                    src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><rect width='240' height='240' fill='%236366f1'/><circle cx='120' cy='90' r='45' fill='%23ffffff'/><path d='M40 210 C40 150, 200 150, 200 210 Z' fill='%23ffffff'/></svg>">
+            </div>
+        </section>
+
+        <section id="info-section">
+            <div class="section-header">
+                <h2 class="section-title">Thông Tin Cá Nhân</h2>
+                <p class="section-subtitle">Hồ sơ chi tiết sinh viên thực hiện bài tập thực hành</p>
+            </div>
+            <div id="info-container" class="info-grid"></div>
+        </section>
+
+        <section id="work-section">
+            <div class="section-header">
+                <h2 class="section-title">Công Việc Hiện Tại</h2>
+                <p class="section-subtitle">Vị trí công tác và kinh nghiệm thực tế</p>
+            </div>
+            <div class="work-box">
+                <div class="work-header">
+                    <div>
+                        <div class="work-role">Software Engineering & QA Tester Intern</div>
+                        <div class="work-org">📍 CLB Taekwondo PTIT / Tech Lab PTIT</div>
+                    </div>
+                    <span class="work-tag">Thực tập sinh</span>
+                </div>
+                <p class="work-desc">
+                    Mô tả công việc: Tham gia phát triển và kiểm thử giao diện các trang web nội bộ của CLB và Lab
+                    nghiên cứu. Thực hiện viết Test Case, phát hiện lỗi hệ thống (Bug) và đề xuất giải pháp tối ưu hóa
+                    trải nghiệm người dùng (UX/UI) trên nền tảng Web.
+                </p>
+            </div>
+        </section>
+
+        <section id="hobbies-section">
+            <div class="section-header">
+                <h2 class="section-title">Sở Thích Cá Nhân</h2>
+                <p class="section-subtitle">Đam mê và hoạt động ngoại khóa ngoài giờ học</p>
+            </div>
+            <div id="hobbies-container" class="hobbies-grid"></div>
+        </section>
+
+        <section id="social-section">
+            <div class="section-header">
+                <h2 class="section-title">Liên Kết Mạng Xã Hội</h2>
+                <p class="section-subtitle">Kết nối với tôi qua các nền tảng trực tuyến</p>
+            </div>
+            <div class="social-grid">
+                <a href="https://facebook.com" target="_blank" rel="noopener" class="social-item social-fb">
+                    <div class="social-icon-box">f</div>
+                    <div>
+                        <div class="social-title">Facebook</div>
+                        <div class="social-sub">Nguyễn Tuấn Việt</div>
+                    </div>
+                </a>
+                <a href="https://zalo.me" target="_blank" rel="noopener" class="social-item social-zalo">
+                    <div class="social-icon-box">Z</div>
+                    <div>
+                        <div class="social-title">Zalo</div>
+                        <div class="social-sub">0987 654 321</div>
+                    </div>
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener" class="social-item social-github">
+                    <div class="social-icon-box">GH</div>
+                    <div>
+                        <div class="social-title">GitHub</div>
+                        <div class="social-sub">@vietnt-ptit</div>
+                    </div>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-item social-linkedin">
+                    <div class="social-icon-box">in</div>
+                    <div>
+                        <div class="social-title">LinkedIn</div>
+                        <div class="social-sub">Tuấn Việt Nguyễn</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-flex">
+                <div>
+                    <strong>Bài tập thực hành Lập trình Web</strong> - PTIT 2024
+                </div>
+                <div>
+                    &copy; <span id="current-year"></span> Nguyễn Tuấn Việt. Tất cả các quyền được bảo lưu.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const personalInfoData = [
+                { icon: '🆔', label: 'Mã Sinh Viên', value: 'B24DCCN001' },
+                { icon: '👤', label: 'Họ và Tên', value: 'Nguyễn Tuấn Việt' },
+                { icon: '🏫', label: 'Lớp', value: 'D24CQCN01-B' },
+                { icon: '🎓', label: 'Trường Đang Học', value: 'Học viện Công nghệ Bưu chính Viễn thông (PTIT)' },
+                { icon: '✉️', label: 'Email', value: 'vietnt.ptit@gmail.com' },
+                { icon: '📞', label: 'Số Điện Thoại', value: '0987 654 321' },
+                { icon: '🎂', label: 'Ngày Sinh / Giới Tính', value: '06/02/2007 (Nam)' },
+                { icon: '📍', label: 'Địa Chỉ', value: 'Hà Nội, Việt Nam' }
+            ];
+
+            const infoContainer = document.getElementById('info-container');
+
+            personalInfoData.forEach(function (item) {
+                const cardDiv = document.createElement('div');
+                cardDiv.setAttribute('class', 'info-card');
+
+                const iconDiv = document.createElement('div');
+                iconDiv.classList.add('info-icon');
+                iconDiv.textContent = item.icon;
+
+                const textDiv = document.createElement('div');
+
+                const labelDiv = document.createElement('div');
+                labelDiv.className = 'info-label';
+                labelDiv.textContent = item.label;
+
+                const valueDiv = document.createElement('div');
+                valueDiv.className = 'info-value';
+                valueDiv.textContent = item.value;
+
+                textDiv.appendChild(labelDiv);
+                textDiv.appendChild(valueDiv);
+                cardDiv.appendChild(iconDiv);
+                cardDiv.appendChild(textDiv);
+
+                infoContainer.appendChild(cardDiv);
+            });
+
+            const hobbiesData = [
+                {
+                    icon: '💻',
+                    title: 'Web Development & Fast APIs',
+                    desc: 'Đam mê nghiên cứu các công nghệ Web hiện đại HTML5/CSS3/JS, tìm hiểu thiết kế RESTful API và tối ưu hóa hiệu năng ứng dụng.'
+                },
+                {
+                    icon: '🥋',
+                    title: 'Võ Thuật Taekwondo',
+                    desc: 'Rèn luyện thể lực và tinh thần kỷ luật tại CLB Taekwondo PTIT, tham gia giao lưu võ thuật và nâng cao sức khỏe cá nhân.'
+                },
+                {
+                    icon: '🎵',
+                    title: 'Âm Nhạc & Ca Hát',
+                    desc: 'Thích lắng nghe âm nhạc Indie, Pop Ballad và tham gia các buổi giao lưu văn nghệ sinh viên để giải tỏa căng thẳng sau giờ học.'
+                }
+            ];
+
+            const hobbiesContainer = document.querySelector('#hobbies-container');
+
+            hobbiesData.forEach(function (hobby) {
+                const hobbyCard = document.createElement('div');
+                hobbyCard.className = 'hobby-card';
+
+                hobbyCard.innerHTML = `
+                    <div class="hobby-badge-icon">${hobby.icon}</div>
+                    <div class="hobby-name">${hobby.title}</div>
+                    <div class="hobby-desc">${hobby.desc}</div>
+                `;
+
+                hobbiesContainer.appendChild(hobbyCard);
+            });
+
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
+            const themeToggleBtn = document.querySelector('#theme-toggle-btn');
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function () {
+                    const isDarkMode = document.body.classList.toggle('dark-mode');
+
+                    if (isDarkMode) {
+                        themeIcon.textContent = '☀️';
+                        themeText.textContent = 'Sáng';
+                    } else {
+                        themeIcon.textContent = '🌙';
+                        themeText.textContent = 'Tối';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
